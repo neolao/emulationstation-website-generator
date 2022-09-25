@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Retro Games</title>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+    </head>
+    <body>
+        <ul>
+        {% for system in systemList %}
+            <li><a href="{{ system }}/index.html">{{ system }}</a></li>
+        {% endfor %}
+        </ul>
+    </body>
+</html>

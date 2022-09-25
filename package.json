@@ -1,0 +1,7 @@
+{
+    "name": "emulationstation-website-generator",
+    "type": "module",
+    "dependencies": {
+        "twig": "^1.15.4"
+    }
+}
