@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<gameList>
+        <game source="Recalbox" timestamp="1660100279">
+                <path>1942 (Japan, USA).nes</path>
+                <hash>E9CF747F</hash>
+                <region>203</region>
+                <players>1-2</players>
+                <genreid>260</genreid>
+                <genre>Shoot'em Up</genre>
+                <publisher>Capcom</publisher>
+                <developer>Capcom</developer>
+                <releasedate>19851210T220000</releasedate>
+                <video>media/videos/1942 44e9c4a9eaf5b3a679253d2aa18aea95.mp4</video>
+                <thumbnail>media/thumbnails/1942 8112f5d1c0d66509027e10f7386c4fb2.png</thumbnail>
+                <image>media/images/1942 8112f5d1c0d66509027e10f7386c4fb2.png</image>
+                <desc>Un shoot'em up qui vous place aux commandes d'un avion américain face aux flottes japonaises. A chaque début de niveau vous décollez de votre porte-avions pour survoler terres et mers en vue de détruire des formations entières d'avions ennemis, cela vous permettant d'acquérir des bonus pour vos armes.</desc>
+                <rating>0.55000</rating>
+                <name>1942</name>
+        </game>
+</gameList>

@@ -41,14 +41,14 @@ async function processSystemDirectory(path, name) {
 
     const parser = new XMLParser();
     const gamelist = parser.parse(gamelistXml);
-    const games = gamelist.gameList.game;
+    const games = Array.isArray(gamelist.gameList.game) ? gamelist.gameList.game : [gamelist.gameList.game];
 
     for (const game of games) {
         if (!game.name) {
             game.name = basename(resolvePath(path, game.path));
         }
         try {
-            game.sanitizedName = sanitizeFileName(game.name);
+            game.sanitizedName = sanitizeFileName(`${game.name}`);
         } catch (error) {
             console.error(`Unable to sanitize game name: "${game.name}"`);
             throw error;
