@@ -13,7 +13,7 @@ for await (const directoryEntry of targetDirectory) {
     const directoryEntryPath = resolvePath(absoluteTargetPath, directoryEntry.name);
     if (directoryEntry.isDirectory() && await isSystemDirectory(directoryEntryPath)) {
         systemList.push(directoryEntry.name);
-        await processSystemDirectory(directoryEntryPath);
+        await processSystemDirectory(directoryEntryPath, directoryEntry.name);
     }
 }
 
@@ -31,8 +31,9 @@ async function isSystemDirectory(path) {
     }
 }
 
-async function processSystemDirectory(path) {
+async function processSystemDirectory(path, name) {
     console.log('process', path);
+    await buildSystemPage(path, name);
 }
 
 async function copyAssets(absoluteTargetPath) {
@@ -43,6 +44,21 @@ async function buildHomepage(absoluteTargetPath, systemList) {
     return new Promise((resolve) => {
         Twig.renderFile('./templates/index.twig', {systemList}, async (err, html) => {
             const filePath = resolvePath(absoluteTargetPath, 'index.html');
+            const data = new Uint8Array(Buffer.from(html));
+            await writeFile(filePath, data);
+            resolve();
+        });
+    });
+}
+
+async function buildSystemPage(path, name) {
+    const parameters = {
+        title: name
+    };
+
+    return new Promise((resolve) => {
+        Twig.renderFile('./templates/system/index.twig', parameters, async (err, html) => {
+            const filePath = resolvePath(path, 'index.html');
             const data = new Uint8Array(Buffer.from(html));
             await writeFile(filePath, data);
             resolve();
