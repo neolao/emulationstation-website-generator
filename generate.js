@@ -4,6 +4,7 @@ import { opendir, access, constants, readFile, copyFile, writeFile } from 'node:
 import { Buffer } from 'node:buffer';
 import Twig from 'twig';
 import { XMLParser } from 'fast-xml-parser';
+import sanitizeFileName from 'sanitize-filename';
 
 const relativeTargetPath = argv[2];
 const absoluteTargetPath = resolvePath(relativeTargetPath);
@@ -43,6 +44,7 @@ async function processSystemDirectory(path, name) {
     const games = gamelist.gameList.game;
 
     for (const game of games) {
+        game.sanitizedFileName = sanitizeFileName(game.name);
         await buildGamePage(path, game);
     }
 
@@ -81,11 +83,11 @@ async function buildSystemPage(path, name, games) {
 }
 
 async function buildGamePage(path, data) {
-    const name = data.name;
+    const sanitizedFileName = data.sanitizedFileName;
 
     return new Promise((resolve) => {
         Twig.renderFile('./templates/system/game.twig', data, async (err, html) => {
-            const filePath = resolvePath(path, `${name}.html`);
+            const filePath = resolvePath(path, `${sanitizedFileName}.html`);
             const data = new Uint8Array(Buffer.from(html));
             await writeFile(filePath, data);
             resolve();

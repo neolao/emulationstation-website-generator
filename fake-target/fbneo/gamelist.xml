@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<gameList>
+        <game>
+                <path>./abcopj.zip</path>
+                <name>A.B. Cop (Japan) (FD1094 317-0169b)</name>
+                <lang>jp</lang>
+                <region>jp</region>
+        </game>
+        <game>
+                <path>./aerofgtc.zip</path>
+                <name>Aero Fighters (Taiwan / Japan, set 2)</name>
+                <lang>en</lang>
+                <region>us</region>
+        </game>
+</gameList>
