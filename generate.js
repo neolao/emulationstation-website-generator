@@ -47,7 +47,12 @@ async function processSystemDirectory(path, name) {
         if (!game.name) {
             game.name = basename(resolvePath(path, game.path));
         }
-        game.sanitizedName = sanitizeFileName(game.name);
+        try {
+            game.sanitizedName = sanitizeFileName(game.name);
+        } catch (error) {
+            console.error(`Unable to sanitize game name: "${game.name}"`);
+            throw error;
+        }
         await buildGamePage(path, game);
     }
 
