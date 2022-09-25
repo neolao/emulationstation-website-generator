@@ -1,5 +1,5 @@
 import { argv } from 'node:process';
-import { resolve as resolvePath } from 'node:path';
+import { resolve as resolvePath, basename } from 'node:path';
 import { opendir, access, constants, readFile, copyFile, writeFile } from 'node:fs/promises';
 import { Buffer } from 'node:buffer';
 import Twig from 'twig';
@@ -44,7 +44,10 @@ async function processSystemDirectory(path, name) {
     const games = gamelist.gameList.game;
 
     for (const game of games) {
-        game.sanitizedFileName = sanitizeFileName(game.name);
+        if (!game.name) {
+            game.name = basename(resolvePath(path, game.path));
+        }
+        game.sanitizedName = sanitizeFileName(game.name);
         await buildGamePage(path, game);
     }
 
@@ -83,11 +86,11 @@ async function buildSystemPage(path, name, games) {
 }
 
 async function buildGamePage(path, data) {
-    const sanitizedFileName = data.sanitizedFileName;
+    const sanitizedName = data.sanitizedName;
 
     return new Promise((resolve) => {
         Twig.renderFile('./templates/system/game.twig', data, async (err, html) => {
-            const filePath = resolvePath(path, `${sanitizedFileName}.html`);
+            const filePath = resolvePath(path, `${sanitizedName}.html`);
             const data = new Uint8Array(Buffer.from(html));
             await writeFile(filePath, data);
             resolve();
