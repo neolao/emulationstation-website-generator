@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<gameList>
+        <game id="2161">
+                <path>./Tales of Phantasia (J) [!] [T+Fre99%_Final_Translation] (1).smc</path>
+                <name>Tales of Phantasia</name>
+                <desc>Tales of Phantasia sur Super Nintendo est un jeu de rôle dans lequel vous incarnez le jeune épéiste Cless Alvein. Vous découvrez votre village totalement détruit et décidez de partir dans une quête de vengeance transcendant le temps et l'espace. Peaufiner vos techniques dans des combats en temps réel contre de puissants ennemis, préparer vos repas grâce à une fonction cuisine et bien plus encore...</desc>
+                <image>./images/Tales of Phantasia (J) [!] [T+Fre99%_Final_Translation] (1)-image.png</image>
+                <video>./videos/Tales of Phantasia (J) [!] [T+Fre99%_Final_Translation] (1)-video.mp4</video>
+                <marquee>./images/Tales of Phantasia (J) [!] [T+Fre99%_Final_Translation] (1)-marquee.png</marquee>
+                <thumbnail>./images/Tales of Phantasia (J) [!] [T+Fre99%_Final_Translation] (1)-thumb.png</thumbnail>
+                <fanart>./images/Tales of Phantasia (J) [!] [T+Fre99%_Final_Translation] (1)-fanart.jpg</fanart>
+                <manual>./manuals/Tales of Phantasia (J) [!] [T+Fre99%_Final_Translation] (1)-manual.pdf</manual>
+                <boxback>./images/Tales of Phantasia (J) [!] [T+Fre99%_Final_Translation] (1)-boxback.png</boxback>
+                <rating>0.75</rating>
+                <releasedate>19951215T000000</releasedate>
+                <developer>Wolf Team</developer>
+                <publisher>Namco</publisher>
+                <genre>Jeu de rôles</genre>
+                <family>Tales Of</family>
+                <players>2</players>
+                <crc32>280A1FD6</crc32>
+                <md5>421e98bce3b856d38b746483f0f3cee3</md5>
+                <lang>jp</lang>
+                <region>jp</region>
+                <scrap name="ScreenScraper" date="20220826T013351" />
+            </game>
+            <game id="2444">
+                <path>./Ninja Ryuuken Den Tomoe (Japan).sfc</path>
+                <name>Ninja Ryuuken Den Tomoe</name>
+                <desc>Ninja Gaiden Trilogy est une compilation sur Super Nintendo des trois épisodes de Ninja Gaiden sortis sur la précédente console de Ninte
+ndo. Le joueur contrôle le ninja Ryu Hayabusa qui se bat avec son sabre lors des phases d'action entrecoupées de petites animations entretenant le scénario. B
+ien que les graphismes soient légèrement améliorés pour la Super Nintendo, les jeux restent très fidèles aux versions Nes.</desc>
+                <image>./images/Ninja Ryuuken Den Tomoe (Japan)-image.png</image>
+                <video>./videos/Ninja Ryuuken Den Tomoe (Japan)-video.mp4</video>
+                <marquee>./images/Ninja Ryuuken Den Tomoe (Japan)-marquee.png</marquee>
+                <thumbnail>./images/Ninja Ryuuken Den Tomoe (Japan)-thumb.png</thumbnail>
+                <fanart>./images/Ninja Ryuuken Den Tomoe (Japan)-fanart.jpg</fanart>
+                <manual>./manuals/Ninja Ryuuken Den Tomoe (Japan)-manual.pdf</manual>
+                <bezel>./images/Ninja Ryuuken Den Tomoe (Japan)-bezel.png</bezel>
+                <boxback>./images/Ninja Ryuuken Den Tomoe (Japan)-boxback.png</boxback>
+                <rating>0.8</rating>
+                <releasedate>19950811T000000</releasedate>
+                <developer>Team Ninja</developer>
+                <publisher>Tecmo</publisher>
+                <genre>Plateforme</genre>
+                <family>Ninja Gaiden</family>
+                <players>1</players>
+                <crc32>5995CF46</crc32>
+                <md5>bd4759afcffd0bd51354f4b620b87457</md5>
+                <lang>jp</lang>
+                <region>jp</region>
+                <cheevosHash>BD4759AFCFFD0BD51354F4B620B87457</cheevosHash>
+                <scrap name="ScreenScraper" date="20220826T011335" />
+        </game>
+        <game id="38582">
+                <path>./Aoki Densetsu Shoot! (Japan).sfc</path>
+                <name>Aoki Densetsu Shoot!</name>
+                <desc>Aoki Densetsu Shoot! est donc un jeu de foot. Enfin, jeu de foot si on veut, on est à peu près aussi loin d'un ISS que la série est loin
+ d'un documentaire sur ce sport. Disons que ça en a vaguement l'aspect, mais qu'on attend les résultats de l'analyse d'ADN pour confirmation.
+Le menu de base propose trois options : jouer, régler divers paramètres, ou regarder des matches types entre deux équipes jouées par l'ordinateur.
+
+Une fois dans le match à proprement parler, les contrôles sont relativement simples. En défense, vous prenez le contrôle du joueur le plus proche du ballon, goal compris (ce n'est pas vous qui choisissez le joueur, l'ordinateur s'en charge) et vous pouvez effectuer un tacle glissé au moyen du bouton A. En attaque, vous contrôlez le porteur du ballon, forcément. Vous tirez au moyen du bouton A, centrez avec B et passez avec X.</desc>
+                <image>./images/Aoki Densetsu Shoot! (Japan)-image.png</image>
+                <video>./videos/Aoki Densetsu Shoot! (Japan)-video.mp4</video>
+                <marquee>./images/Aoki Densetsu Shoot! (Japan)-marquee.png</marquee>
+                <thumbnail>./images/Aoki Densetsu Shoot! (Japan)-thumb.png</thumbnail>
+                <fanart>./images/Aoki Densetsu Shoot! (Japan)-fanart.jpg</fanart>
+                <boxback>./images/Aoki Densetsu Shoot! (Japan)-boxback.png</boxback>
+                <rating>0.75</rating>
+                <releasedate>19941216T000000</releasedate>
+                <developer>KSS</developer>
+                <publisher>Affect</publisher>
+                <genre>Sport</genre>
+                <players>1</players>
+                <crc32>9EA4AD6F</crc32>
+                <md5>41668cd2bfd33fab8b7168fecff2ae4b</md5>
+                <lang>jp</lang>
+                <region>jp</region>
+                <cheevosHash>41668CD2BFD33FAB8B7168FECFF2AE4B</cheevosHash>
+                <scrap name="ScreenScraper" date="20220826T011359" />
+        </game>
+        <game id="2453">
+                <path>./Mighty Morphin Power Rangers - The Fighting Edition (Europe).sfc</path>
+                <name>Mighty Morphin Power Rangers : The Fighting Edition</name>
+                <desc>Dans cette édition des Mighty Morphin Power Rangers sur Super Nintendo, vous avez l'occasion de faire combattre en duel les robots des Power Rangers. Vous avez le choix entre quatre Zords de Power Rangers et quatre monstres. Un mode histoire vous fait affronter les adversaires les uns après les autres alors que le mode Fighting permet de faire des matches simples, contre l'ordinateur ou contre un autre joueur.</desc>
+                <image>./images/Mighty Morphin Power Rangers - The Fighting Edition (Europe)-image.png</image>
+                <video>./videos/Mighty Morphin Power Rangers - The Fighting Edition (Europe)-video.mp4</video>
+                <marquee>./images/Mighty Morphin Power Rangers - The Fighting Edition (Europe)-marquee.png</marquee>
+                <thumbnail>./images/Mighty Morphin Power Rangers - The Fighting Edition (Europe)-thumb.png</thumbnail>
+                <fanart>./images/Mighty Morphin Power Rangers - The Fighting Edition (Europe)-fanart.jpg</fanart>
+                <manual>./manuals/Mighty Morphin Power Rangers - The Fighting Edition (Europe)-manual.pdf</manual>
+                <bezel>./images/Mighty Morphin Power Rangers - The Fighting Edition (Europe)-bezel.png</bezel>
+                <boxback>./images/Mighty Morphin Power Rangers - The Fighting Edition (Europe)-boxback.png</boxback>
+                <rating>0.75</rating>
+                <releasedate>19950101T000000</releasedate>
+                <developer>Bandai Namco</developer>
+                <publisher>Natsume</publisher>
+                <genre>Combat</genre>
+                <family>Power Rangers</family>
+                <players>2</players>
+                <crc32>6FC37D96</crc32>
+                <md5>7b8cd363202126c944147c3c5e1ca54a</md5>
+                <lang>en</lang>
+                <region>eu</region>
+                <cheevosHash>7B8CD363202126C944147C3C5E1CA54A</cheevosHash>
+                <scrap name="ScreenScraper" date="20220826T011423" />
+        </game>
+</gameList>

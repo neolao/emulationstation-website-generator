@@ -1,8 +1,9 @@
 import { argv } from 'node:process';
 import { resolve as resolvePath } from 'node:path';
-import { opendir, access, constants, copyFile, writeFile } from 'node:fs/promises';
+import { opendir, access, constants, readFile, copyFile, writeFile } from 'node:fs/promises';
 import { Buffer } from 'node:buffer';
 import Twig from 'twig';
+import { XMLParser } from 'fast-xml-parser';
 
 const relativeTargetPath = argv[2];
 const absoluteTargetPath = resolvePath(relativeTargetPath);
@@ -33,7 +34,19 @@ async function isSystemDirectory(path) {
 
 async function processSystemDirectory(path, name) {
     console.log('process', path);
-    await buildSystemPage(path, name);
+
+    const gamelistPath = resolvePath(path, 'gamelist.xml');
+    const gamelistXml = await readFile(gamelistPath);
+
+    const parser = new XMLParser();
+    const gamelist = parser.parse(gamelistXml);
+    const games = gamelist.gameList.game;
+
+    for (const game of games) {
+        await buildGamePage(path, game);
+    }
+
+    await buildSystemPage(path, name, games);
 }
 
 async function copyAssets(absoluteTargetPath) {
@@ -51,14 +64,28 @@ async function buildHomepage(absoluteTargetPath, systemList) {
     });
 }
 
-async function buildSystemPage(path, name) {
+async function buildSystemPage(path, name, games) {
     const parameters = {
-        title: name
+        title: name,
+        games
     };
 
     return new Promise((resolve) => {
         Twig.renderFile('./templates/system/index.twig', parameters, async (err, html) => {
             const filePath = resolvePath(path, 'index.html');
+            const data = new Uint8Array(Buffer.from(html));
+            await writeFile(filePath, data);
+            resolve();
+        });
+    });
+}
+
+async function buildGamePage(path, data) {
+    const name = data.name;
+
+    return new Promise((resolve) => {
+        Twig.renderFile('./templates/system/game.twig', data, async (err, html) => {
+            const filePath = resolvePath(path, `${name}.html`);
             const data = new Uint8Array(Buffer.from(html));
             await writeFile(filePath, data);
             resolve();
