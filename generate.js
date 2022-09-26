@@ -48,7 +48,7 @@ async function processSystemDirectory(path, name) {
             game.name = basename(resolvePath(path, game.path));
         }
         try {
-            game.sanitizedName = sanitizeFileName(`${game.name}`);
+            game.sanitizedName = sanitizeFileName(`${game.name}`, { replacement: '-' });
         } catch (error) {
             console.error(`Unable to sanitize game name: "${game.name}"`);
             throw error;
