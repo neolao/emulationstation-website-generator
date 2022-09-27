@@ -6,11 +6,20 @@
         <link rel="stylesheet" type="text/css" href="/style.css"/>
     </head>
     <body>
-        <ul>
+        <table>
         {% for game in games %}
-            <li><a href="{{ game.sanitizedName }}.html">{{ game.name }}</a></li>
+            <tr>
+                <td>
+                    <a href="{{ game.sanitizedName }}.html">
+                        <img src="{{ game.thumbnail }}" alt="{{ game.name }}"/>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ game.sanitizedName }}.html">{{ game.name }}</a>
+                </td>
+            </tr>
         {% endfor %}
-        </ul>
+        </table>
 
     </body>
 </html>
