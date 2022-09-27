@@ -5,6 +5,7 @@ import { Buffer } from 'node:buffer';
 import Twig from 'twig';
 import { XMLParser } from 'fast-xml-parser';
 import sanitizeFileName from 'sanitize-filename';
+import sharp from 'sharp';
 
 const relativeTargetPath = argv[2];
 const absoluteTargetPath = resolvePath(relativeTargetPath);
@@ -54,6 +55,7 @@ async function processSystemDirectory(path, name) {
             console.error(`Unable to sanitize game name: "${game.name}"`);
             throw error;
         }
+        await generateThumbnail(path, game);
         await buildGamePage(path, game);
     }
 
@@ -102,4 +104,13 @@ async function buildGamePage(path, data) {
             resolve();
         });
     });
+}
+
+async function generateThumbnail(systemPath, game) {
+    const originalImagePath = resolvePath(systemPath, game.thumbnail);
+    const relativeGeneratedImagePath = `${game.sanitizedName}.png`;
+    const generatedImagePath = resolvePath(systemPath, relativeGeneratedImagePath);
+
+    await sharp(originalImagePath).resize({ height: 50 }).png().toBuffer().toFile(generatedImagePath);
+    game.generatedThumbnail = relativeGeneratedImagePath;
 }
