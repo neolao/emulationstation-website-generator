@@ -55,9 +55,7 @@ async function processSystemDirectory(path, name) {
             console.error(`Unable to sanitize game name: "${game.name}"`);
             throw error;
         }
-        if (game.thumbnail) {
-            await generateThumbnail(path, game);
-        }
+        game.generatedThumbnail = await tryToGenerateThumbnail(path, game);
         await buildGamePage(path, game);
     }
 
@@ -108,12 +106,16 @@ async function buildGamePage(path, data) {
     });
 }
 
-async function generateThumbnail(systemPath, game) {
+async function tryToGenerateThumbnail(systemPath, game) {
+    if (!game.thumbnail) {
+        return 'https://via.placeholder.com/50';
+    }
+
     const originalImagePath = resolvePath(systemPath, game.thumbnail);
     try {
         await access(originalImagePath, constants.R_OK);
     } catch {
-        return;
+        return 'https://via.placeholder.com/50';
     }
 
     const relativeGeneratedImagePath = `${game.sanitizedName}.png`;
@@ -123,5 +125,5 @@ async function generateThumbnail(systemPath, game) {
     await image.resize(Jimp.AUTO, 50);
     await image.writeAsync(generatedImagePath);
 
-    game.generatedThumbnail = relativeGeneratedImagePath;
+    return relativeGeneratedImagePath;
 }
