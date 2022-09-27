@@ -55,7 +55,9 @@ async function processSystemDirectory(path, name) {
             console.error(`Unable to sanitize game name: "${game.name}"`);
             throw error;
         }
-        await generateThumbnail(path, game);
+        if (game.thumbnail) {
+            await generateThumbnail(path, game);
+        }
         await buildGamePage(path, game);
     }
 
