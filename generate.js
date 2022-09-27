@@ -5,7 +5,7 @@ import { Buffer } from 'node:buffer';
 import Twig from 'twig';
 import { XMLParser } from 'fast-xml-parser';
 import sanitizeFileName from 'sanitize-filename';
-import sharp from 'sharp';
+import Jimp from 'jimp';
 
 const relativeTargetPath = argv[2];
 const absoluteTargetPath = resolvePath(relativeTargetPath);
@@ -111,6 +111,9 @@ async function generateThumbnail(systemPath, game) {
     const relativeGeneratedImagePath = `${game.sanitizedName}.png`;
     const generatedImagePath = resolvePath(systemPath, relativeGeneratedImagePath);
 
-    await sharp(originalImagePath).resize({ height: 50 }).png().toBuffer().toFile(generatedImagePath);
+    const image = await Jimp.read(originalImagePath);
+    await image.resize(Jimp.AUTO, 50);
+    await image.writeAsync(generatedImagePath);
+
     game.generatedThumbnail = relativeGeneratedImagePath;
 }

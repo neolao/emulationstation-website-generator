@@ -3,8 +3,8 @@
     "type": "module",
     "dependencies": {
         "fast-xml-parser": "^4.0.10",
+        "jimp": "^0.16.2",
         "sanitize-filename": "^1.6.3",
-        "sharp": "^0.31.0",
         "twig": "^1.15.4"
     }
 }
