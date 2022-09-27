@@ -12,17 +12,30 @@ const absoluteTargetPath = resolvePath(relativeTargetPath);
 
 await copyAssets(absoluteTargetPath);
 
-const systemList = [];
+const systems = [];
 const targetDirectory = await opendir(absoluteTargetPath);
 for await (const directoryEntry of targetDirectory) {
     const directoryEntryPath = resolvePath(absoluteTargetPath, directoryEntry.name);
     if (directoryEntry.isDirectory() && await isSystemDirectory(directoryEntryPath)) {
-        systemList.push(directoryEntry.name);
+        systems.push({
+            name: directoryEntry.name
+        });
         await processSystemDirectory(directoryEntryPath, directoryEntry.name);
     }
 }
 
-await buildHomepage(absoluteTargetPath, systemList);
+systems.sort((a, b) => {
+    if (a.name < b.name) {
+        return -1;
+    }
+
+    if (a.name > b.name) {
+        return 1;
+    }
+
+    return 0;
+});
+await buildHomepage(absoluteTargetPath, systems);
 
 
 async function isSystemDirectory(path) {
@@ -66,9 +79,9 @@ async function copyAssets(absoluteTargetPath) {
     await copyFile('./templates/style.css', resolvePath(absoluteTargetPath, 'style.css'));
 }
 
-async function buildHomepage(absoluteTargetPath, systemList) {
+async function buildHomepage(absoluteTargetPath, systems) {
     return new Promise((resolve) => {
-        Twig.renderFile('./templates/index.twig', {systemList}, async (err, html) => {
+        Twig.renderFile('./templates/index.twig', {systems}, async (err, html) => {
             const filePath = resolvePath(absoluteTargetPath, 'index.html');
             const data = new Uint8Array(Buffer.from(html));
             await writeFile(filePath, data);

@@ -8,8 +8,8 @@
     </head>
     <body>
         <ul>
-        {% for system in systemList %}
-            <li><a href="{{ system }}/index.html">{{ system }}</a></li>
+        {% for system in systems %}
+            <li><a href="{{ system.name }}/index.html">{{ system.name }}</a></li>
         {% endfor %}
         </ul>
     </body>
