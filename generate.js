@@ -9,6 +9,8 @@ import sanitizeFileName from 'sanitize-filename';
 const relativeTargetPath = argv[2];
 const absoluteTargetPath = resolvePath(relativeTargetPath);
 
+await copyAssets(absoluteTargetPath);
+
 const systemList = [];
 const targetDirectory = await opendir(absoluteTargetPath);
 for await (const directoryEntry of targetDirectory) {
@@ -19,7 +21,6 @@ for await (const directoryEntry of targetDirectory) {
     }
 }
 
-await copyAssets(absoluteTargetPath);
 await buildHomepage(absoluteTargetPath, systemList);
 
 
