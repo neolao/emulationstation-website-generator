@@ -110,6 +110,12 @@ async function buildGamePage(path, data) {
 
 async function generateThumbnail(systemPath, game) {
     const originalImagePath = resolvePath(systemPath, game.thumbnail);
+    try {
+        await access(originalImagePath, constants.R_OK);
+    } catch {
+        return;
+    }
+
     const relativeGeneratedImagePath = `${game.sanitizedName}.png`;
     const generatedImagePath = resolvePath(systemPath, relativeGeneratedImagePath);
 
