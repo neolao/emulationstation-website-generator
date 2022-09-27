@@ -120,6 +120,12 @@ async function tryToGenerateThumbnail(systemPath, game) {
 
     const relativeGeneratedImagePath = `${game.sanitizedName}.png`;
     const generatedImagePath = resolvePath(systemPath, relativeGeneratedImagePath);
+    try {
+        await access(generatedImagePath, constants.R_OK);
+        return relativeGeneratedImagePath;
+    } catch {
+    }
+
 
     const image = await Jimp.read(originalImagePath);
     await image.resize(Jimp.AUTO, 50);
