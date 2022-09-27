@@ -93,6 +93,7 @@ async function buildSystemPage(path, name, games) {
 async function buildGamePage(path, data) {
     const sanitizedName = data.sanitizedName;
 
+    console.log(data.desc);
     return new Promise((resolve) => {
         Twig.renderFile('./templates/system/game.twig', data, async (err, html) => {
             const filePath = resolvePath(path, `${sanitizedName}.html`);
