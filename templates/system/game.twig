@@ -7,6 +7,10 @@
     </head>
     <body>
         <h1>{{ name }}</h1>
+        <picture>
+            <source srcset="{{ image }}"/>
+        </picture>
+        <p>File: <code>{{ path }}</code></p>
         <p>{{ desc }}</p>
     </body>
 </html>
