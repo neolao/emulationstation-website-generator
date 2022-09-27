@@ -1,11 +1,18 @@
+html, body {
+    background: #eee;
+}
+
 .list-column {
 
 }
 
+.list-column--thumbnail {
+    text-align: center;
+}
 .list-column--full {
     width: width: 100%;
 }
 
 .list-thumbnail {
-    max-height: 50px;
+    max-height: 10px;
 }

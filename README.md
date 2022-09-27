@@ -7,5 +7,5 @@ Generate a static website to list games from Emulationstation game lists
 ```bash
 nvm install
 npm ci
-
+```
 

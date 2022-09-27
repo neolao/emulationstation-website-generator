@@ -10,7 +10,7 @@
         <table>
         {% for game in games %}
             <tr>
-                <td class="list-column">
+                <td class="list-column list-column--thumbnail">
                     <a href="{{ game.sanitizedName }}.html">
                         <img class="list-thumbnail" src="{{ game.generatedThumbnail }}" alt="{{ game.name }}"/>
                     </a>

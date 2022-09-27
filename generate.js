@@ -108,17 +108,17 @@ async function buildGamePage(path, data) {
 
 async function tryToGenerateThumbnail(systemPath, game) {
     if (!game.thumbnail) {
-        return 'https://via.placeholder.com/50';
+        return 'https://via.placeholder.com/100';
     }
 
     const originalImagePath = resolvePath(systemPath, game.thumbnail);
     try {
         await access(originalImagePath, constants.R_OK);
     } catch {
-        return 'https://via.placeholder.com/50';
+        return 'https://via.placeholder.com/100';
     }
 
-    const relativeGeneratedImagePath = `${game.sanitizedName}.png`;
+    const relativeGeneratedImagePath = `${game.sanitizedName}-100.png`;
     const generatedImagePath = resolvePath(systemPath, relativeGeneratedImagePath);
     try {
         await access(generatedImagePath, constants.R_OK);
@@ -128,7 +128,7 @@ async function tryToGenerateThumbnail(systemPath, game) {
 
 
     const image = await Jimp.read(originalImagePath);
-    await image.resize(Jimp.AUTO, 50);
+    await image.resize(Jimp.AUTO, 100);
     await image.writeAsync(generatedImagePath);
 
     return relativeGeneratedImagePath;
