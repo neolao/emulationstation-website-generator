@@ -2,19 +2,20 @@
 <html>
     <head>
         <title>{{ title }}</title>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" type="text/css" href="/style.css"/>
     </head>
     <body>
         <table>
         {% for game in games %}
             <tr>
-                <td>
+                <td class="list-column">
                     <a href="{{ game.sanitizedName }}.html">
                         <img class="list-thumbnail" src="{{ game.thumbnail }}" alt="{{ game.name }}"/>
                     </a>
                 </td>
-                <td>
+                <td class="list-column list-column--full">
                     <a href="{{ game.sanitizedName }}.html">{{ game.name }}</a>
                 </td>
             </tr>

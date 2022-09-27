@@ -1,3 +1,11 @@
+.list-column {
+
+}
+
+.list-column--full {
+    width: width: 100%;
+}
+
 .list-thumbnail {
     max-height: 50px;
 }
