@@ -4,6 +4,7 @@ html, body {
 
 .system-logo {
     width: 100%;
+    padding: 1em 2em;
 }
 
 .system-row {
