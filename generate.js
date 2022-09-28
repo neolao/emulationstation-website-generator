@@ -7,7 +7,7 @@ import Twig from 'twig';
 import { XMLParser } from 'fast-xml-parser';
 import sanitizeFileName from 'sanitize-filename';
 import Jimp from 'jimp';
-import supportedSystems from './systems.json';
+import supportedSystems from './systems.json' assert { type: "json" };
 
 const relativeTargetPath = argv[2];
 const absoluteTargetPath = resolvePath(relativeTargetPath);
