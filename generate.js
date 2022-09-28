@@ -69,8 +69,8 @@ async function processSystemDirectory(path, system) {
     const parser = new XMLParser();
     const gamelist = parser.parse(gamelistXml);
     let games = Array.isArray(gamelist.gameList.game) ? gamelist.gameList.game : [gamelist.gameList.game];
+    games = filterLastUniqueFilePath(games);
 
-    const uniqueGames = new Map();
     for (const game of games) {
         uniqueGames.set(game.path, game);
         if (!game.name) {
@@ -81,7 +81,6 @@ async function processSystemDirectory(path, system) {
         await buildGamePage(path, game);
     }
 
-    games = Array.from(uniqueGames.values());
     games = games.filter((game) => {
         if (game.hidden && game.hidden === 'true') {
             return false;
@@ -98,6 +97,15 @@ async function processSystemDirectory(path, system) {
         return 0;
     });
     await buildSystemPage(path, system, games);
+}
+
+function filterLastUniqueFilePath(games) {
+    const uniqueGames = new Map();
+    for (const game of games) {
+        uniqueGames.set(game.path, game);
+    }
+
+    return Array.from(uniqueGames.values());
 }
 
 function buildSanitizedGameName(game) {
