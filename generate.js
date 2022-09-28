@@ -72,7 +72,6 @@ async function processSystemDirectory(path, system) {
     games = filterLastUniqueFilePath(games);
 
     for (const game of games) {
-        uniqueGames.set(game.path, game);
         if (!game.name) {
             game.name = basename(resolvePath(path, game.path));
         }
