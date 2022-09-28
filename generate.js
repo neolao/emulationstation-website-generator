@@ -182,9 +182,15 @@ async function tryToGenerateThumbnail(systemPath, game) {
     }
 
 
-    const image = await Jimp.read(originalImagePath);
-    await image.resize(Jimp.AUTO, 100);
-    await image.writeAsync(generatedImagePath);
+    try {
+        const image = await Jimp.read(originalImagePath);
+        await image.resize(Jimp.AUTO, 100);
+        await image.writeAsync(generatedImagePath);    
+    } catch (error) {
+        console.error(error);
+        throw new Error(`Unable to generate thumbnail: ${originalImagePath}`);
+    }
+    
 
     return relativeGeneratedImagePath;
 }
