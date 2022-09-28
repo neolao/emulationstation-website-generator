@@ -88,7 +88,7 @@ function buildSanitizedGameName(game) {
         throw error;
     }
 
-    sanitizedName = sanitizedName.replace('#', '-');
+    sanitizedName = sanitizedName.replaceAll('#', '-');
 
     return sanitizedName;
 }
