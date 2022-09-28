@@ -108,7 +108,7 @@ function filterLastUniqueFilePath(games) {
 }
 
 function buildSanitizedGameName(game) {
-    let sanitizedName = game.name;
+    let sanitizedName = game.path;
     try {
         sanitizedName = sanitizeFileName(`${game.name}`, { replacement: '-' });
     } catch (error) {
