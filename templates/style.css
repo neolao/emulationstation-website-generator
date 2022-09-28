@@ -4,11 +4,15 @@ html, body {
 
 .system-logo {
     width: 100%;
-    padding: 1em 2em;
 }
 
 .system-row {
     border-bottom: solid 1px #666;
+    padding: 1em 2em;
+}
+
+title {
+    padding: 1em 2em;
 }
 
 .list {
