@@ -157,11 +157,16 @@ async function buildGamePage(path, data) {
 }
 
 async function tryToGenerateThumbnail(systemPath, game) {
-    if (!game.thumbnail) {
+    let originalImage;
+    if (game.thumbnail) {
+        originalImage = game.thumbnail;
+    } else if (game.image) {
+        originalImage = game.image;
+    } else {
         return 'https://via.placeholder.com/100';
     }
 
-    const originalImagePath = resolvePath(systemPath, game.thumbnail);
+    const originalImagePath = resolvePath(systemPath, originalImage);
     try {
         await access(originalImagePath, constants.R_OK);
     } catch {

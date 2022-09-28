@@ -37,3 +37,12 @@ h1 {
 .list-thumbnail {
     max-height: 100px;
 }
+
+.game-image {
+}
+.game-image--full {
+    width: 100%;
+}
+.game-image--half {
+    width: 50%;
+}

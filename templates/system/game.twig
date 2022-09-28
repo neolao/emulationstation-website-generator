@@ -8,10 +8,50 @@
     </head>
     <body>
         <h1>{{ name }}</h1>
-        <picture>
-            <img src="{{ image }}"/>
-        </picture>
-        <p>File: <code>{{ path }}</code></p>
-        <p>{{ desc }}</p>
+        {% if video is defined %}
+        <table>
+            <tr>
+                <td>
+                    <img class="game-image game-image--half" src="{{ image }}"/>
+                </td>
+                <td>
+                    <video autoplay loop>
+                        <source src="{{ video }}" type="video/mp4">
+                    </video>
+                </td>
+            </tr>
+        <table>
+        {% else %}
+            <p><img class="game-image game-image--full" src="{{ image }}"/></p>
+        {% endif %}
+
+        <table class="list">
+            <tr class="list-row">
+                <td class="list-column list-column--name">
+                    File
+                </td>
+                <td class="list-column list-column--full">
+                    <code>{{ path }}</code>
+                </td>
+            </tr>
+            <tr class="list-row">
+                <td class="list-column list-column--name">
+                    Genre
+                </td>
+                <td class="list-column list-column--full">
+                    <code>{{ genre }}</code>
+                </td>
+            </tr>
+            <tr class="list-row">
+                <td class="list-column list-column--name">
+                    Language
+                </td>
+                <td class="list-column list-column--full">
+                    <code>{{ lang }}</code>
+                </td>
+            </tr>
+        </table>
+
+        <blockquote>{{ desc }}</blockquote>
     </body>
 </html>
