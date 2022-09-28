@@ -75,6 +75,7 @@ async function processSystemDirectory(path, system) {
         if (!game.name) {
             game.name = basename(resolvePath(path, game.path));
         }
+        game.path = cleanGamePath(game.path);
         game.sanitizedFileName = buildSanitizedGameFileName(game);
         game.generatedThumbnail = await tryToGenerateThumbnail(path, game);
         await buildGamePage(path, game);
@@ -96,6 +97,16 @@ async function processSystemDirectory(path, system) {
         return 0;
     });
     await buildSystemPage(path, system, games);
+}
+
+function cleanGamePath(path) {
+    let newPath = path;
+
+    if (path.startsWith('./')) {
+        newPath = path.substring(2);
+    }
+
+    return newPath;
 }
 
 function filterLastUniqueFilePath(games) {
