@@ -70,7 +70,9 @@ async function processSystemDirectory(path, system) {
     const gamelist = parser.parse(gamelistXml);
     let games = Array.isArray(gamelist.gameList.game) ? gamelist.gameList.game : [gamelist.gameList.game];
 
+    const uniqueGames = new Map();
     for (const game of games) {
+        uniqueGames.set(game.path, game);
         if (!game.name) {
             game.name = basename(resolvePath(path, game.path));
         }
@@ -79,6 +81,7 @@ async function processSystemDirectory(path, system) {
         await buildGamePage(path, game);
     }
 
+    games = Array.from(uniqueGames.values());
     games = games.filter((game) => {
         if (game.hidden && game.hidden === 'true') {
             return false;
