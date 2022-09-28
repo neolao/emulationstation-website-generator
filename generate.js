@@ -1,11 +1,13 @@
 import { argv } from 'node:process';
 import { resolve as resolvePath, basename } from 'node:path';
-import { opendir, access, constants, readFile, copyFile, writeFile } from 'node:fs/promises';
+import { opendir, access, constants, readFile, writeFile } from 'node:fs/promises';
+import { copy } from 'fs-extra';
 import { Buffer } from 'node:buffer';
 import Twig from 'twig';
 import { XMLParser } from 'fast-xml-parser';
 import sanitizeFileName from 'sanitize-filename';
 import Jimp from 'jimp';
+import supportedSystems from './systems.json';
 
 const relativeTargetPath = argv[2];
 const absoluteTargetPath = resolvePath(relativeTargetPath);
@@ -16,11 +18,21 @@ const systems = [];
 const targetDirectory = await opendir(absoluteTargetPath);
 for await (const directoryEntry of targetDirectory) {
     const directoryEntryPath = resolvePath(absoluteTargetPath, directoryEntry.name);
+
+    const systemId = directoryEntry.name;
+    if (!supportedSystems[systemId]) {
+        continue;
+    }
+    const systemName = supportedSystems[systemId];
+
     if (directoryEntry.isDirectory() && await isSystemDirectory(directoryEntryPath)) {
-        systems.push({
-            name: directoryEntry.name
-        });
-        await processSystemDirectory(directoryEntryPath, directoryEntry.name);
+        const system = {
+            id: systemId,
+            name: systemName,
+            logo: `/assets/${systemId}.svg`
+        };
+        systems.push(system);
+        await processSystemDirectory(directoryEntryPath, system);
     }
 }
 
@@ -48,7 +60,7 @@ async function isSystemDirectory(path) {
     }
 }
 
-async function processSystemDirectory(path, name) {
+async function processSystemDirectory(path, system) {
     console.log('process', path);
 
     const gamelistPath = resolvePath(path, 'gamelist.xml');
@@ -82,7 +94,7 @@ async function processSystemDirectory(path, name) {
         }
         return 0;
     });
-    await buildSystemPage(path, name, games);
+    await buildSystemPage(path, system, games);
 }
 
 function buildSanitizedGameName(game) {
@@ -100,7 +112,8 @@ function buildSanitizedGameName(game) {
 }
 
 async function copyAssets(absoluteTargetPath) {
-    await copyFile('./templates/style.css', resolvePath(absoluteTargetPath, 'style.css'));
+    await copy('./templates/style.css', resolvePath(absoluteTargetPath, 'style.css'));
+    await copy('./templates/assets', resolvePath(absoluteTargetPath, 'assets'));
 }
 
 async function buildHomepage(absoluteTargetPath, systems) {
@@ -114,9 +127,9 @@ async function buildHomepage(absoluteTargetPath, systems) {
     });
 }
 
-async function buildSystemPage(path, name, games) {
+async function buildSystemPage(path, system, games) {
     const parameters = {
-        title: name,
+        title: system.name,
         games
     };
 
