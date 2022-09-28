@@ -6,6 +6,10 @@ html, body {
     width: 100%;
 }
 
+.system-row {
+    border-bottom: solid 1px #666;
+}
+
 .list-column {
 
 }
