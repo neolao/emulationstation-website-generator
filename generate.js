@@ -75,7 +75,7 @@ async function processSystemDirectory(path, system) {
         if (!game.name) {
             game.name = basename(resolvePath(path, game.path));
         }
-        game.sanitizedName = buildSanitizedGameName(game);
+        game.sanitizedFileName = buildSanitizedGameFileName(game);
         game.generatedThumbnail = await tryToGenerateThumbnail(path, game);
         await buildGamePage(path, game);
     }
@@ -107,12 +107,12 @@ function filterLastUniqueFilePath(games) {
     return Array.from(uniqueGames.values());
 }
 
-function buildSanitizedGameName(game) {
+function buildSanitizedGameFileName(game) {
     let sanitizedName = game.path;
     try {
-        sanitizedName = sanitizeFileName(`${game.name}`, { replacement: '-' });
+        sanitizedName = sanitizeFileName(`${game.path}`, { replacement: '-' });
     } catch (error) {
-        console.error(`Unable to sanitize game name: "${game.name}"`);
+        console.error(`Unable to sanitize game file path: "${game.path}"`);
         throw error;
     }
 
@@ -154,11 +154,11 @@ async function buildSystemPage(path, system, games) {
 }
 
 async function buildGamePage(path, data) {
-    const sanitizedName = data.sanitizedName;
+    const sanitizedFileName = data.sanitizedFileName;
 
     return new Promise((resolve) => {
         Twig.renderFile('./templates/system/game.twig', data, async (err, html) => {
-            const filePath = resolvePath(path, `${sanitizedName}.html`);
+            const filePath = resolvePath(path, `${sanitizedFileName}.html`);
             const data = new Uint8Array(Buffer.from(html));
             await writeFile(filePath, data);
             resolve();
@@ -183,7 +183,7 @@ async function tryToGenerateThumbnail(systemPath, game) {
         return 'https://via.placeholder.com/100';
     }
 
-    const relativeGeneratedImagePath = `${game.sanitizedName}-100.png`;
+    const relativeGeneratedImagePath = `${game.sanitizedFileName}-100.png`;
     const generatedImagePath = resolvePath(systemPath, relativeGeneratedImagePath);
     try {
         await access(generatedImagePath, constants.R_OK);
