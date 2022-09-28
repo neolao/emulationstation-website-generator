@@ -11,11 +11,11 @@
         {% if video is defined %}
         <table>
             <tr>
-                <td>
-                    <img class="game-image game-image--half" src="{{ image }}"/>
+                <td class="game-media">
+                    <img class="game-image" src="{{ image }}"/>
                 </td>
-                <td>
-                    <video class="game-video game-video--half" autoplay loop>
+                <td class="game-media">
+                    <video class="game-video" autoplay loop>
                         <source src="{{ video }}" type="video/mp4">
                     </video>
                 </td>

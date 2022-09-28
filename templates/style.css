@@ -38,20 +38,14 @@ h1 {
     max-height: 100px;
 }
 
-.game-image {
-}
-.game-image--full {
-    width: 100%;
-}
-.game-image--half {
+.game-media {
     width: 50%;
 }
 
-.game-video {
-}
-.game-video--full {
+.game-image {
     width: 100%;
 }
-.game-video--half {
-    width: 50%;
+
+.game-video {
+    width: 100%;
 }
