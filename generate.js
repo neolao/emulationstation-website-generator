@@ -56,7 +56,7 @@ async function processSystemDirectory(path, name) {
 
     const parser = new XMLParser();
     const gamelist = parser.parse(gamelistXml);
-    const games = Array.isArray(gamelist.gameList.game) ? gamelist.gameList.game : [gamelist.gameList.game];
+    let games = Array.isArray(gamelist.gameList.game) ? gamelist.gameList.game : [gamelist.gameList.game];
 
     for (const game of games) {
         if (!game.name) {
@@ -67,6 +67,12 @@ async function processSystemDirectory(path, name) {
         await buildGamePage(path, game);
     }
 
+    games = games.filter((game) => {
+        if (game.hidden && game.hidden === 'true') {
+            return false;
+        }
+        return true;
+    });
     games.sort((a, b) => {
         if (a.name < b.name) {
             return -1;
