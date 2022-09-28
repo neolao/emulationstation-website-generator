@@ -10,7 +10,7 @@
         <h1><img class="system-logo" src="{{ system.logo }}" alt="{{ system.name }}"/></h1>
         <table>
         {% for game in games %}
-            <tr>
+            <tr class="list-row">
                 <td class="list-column list-column--thumbnail">
                     <a href="{{ game.sanitizedName }}.html">
                         <img class="list-thumbnail" src="{{ game.generatedThumbnail }}" alt="{{ game.name }}"/>

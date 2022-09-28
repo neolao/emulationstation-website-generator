@@ -10,6 +10,10 @@ html, body {
     border-bottom: solid 1px #666;
 }
 
+.list-row:nth-child(even) {
+    background: #ddd;
+}
+
 .list-column {
 
 }
