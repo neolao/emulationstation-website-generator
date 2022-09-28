@@ -7,19 +7,12 @@
         <link rel="stylesheet" type="text/css" href="style.css"/>
     </head>
     <body>
-        <table>
         {% for system in systems %}
-            <tr>
-                <td class="list-column list-column--thumbnail">
-                    <a href="{{ system.id }}/index.html">
-                        <img class="list-thumbnail" src="{{ system.logo }}" alt="{{ system.name }}"/>
-                    </a>
-                </td>
-                <td class="list-column list-column--full">
-                    <a href="{{ system.id }}.html">{{ system.name }}</a>
-                </td>
-            </tr>
+        <p>
+            <a href="{{ system.id }}/index.html">
+                <img class="system-logo" src="{{ system.logo }}" alt="{{ system.name }}"/>
+            </a>
+        </p>
         {% endfor %}
-        </table>
     </body>
 </html>

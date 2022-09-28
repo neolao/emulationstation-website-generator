@@ -2,6 +2,10 @@ html, body {
     background: #eee;
 }
 
+.system-logo {
+    width: 100%;
+}
+
 .list-column {
 
 }
