@@ -129,7 +129,7 @@ async function buildHomepage(absoluteTargetPath, systems) {
 
 async function buildSystemPage(path, system, games) {
     const parameters = {
-        title: system.name,
+        system,
         games
     };
 
