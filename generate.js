@@ -62,12 +62,7 @@ async function processSystemDirectory(path, name) {
         if (!game.name) {
             game.name = basename(resolvePath(path, game.path));
         }
-        try {
-            game.sanitizedName = sanitizeFileName(`${game.name}`, { replacement: '-' });
-        } catch (error) {
-            console.error(`Unable to sanitize game name: "${game.name}"`);
-            throw error;
-        }
+        game.sanitizedName = buildSanitizedGameName(game);
         game.generatedThumbnail = await tryToGenerateThumbnail(path, game);
         await buildGamePage(path, game);
     }
@@ -82,6 +77,20 @@ async function processSystemDirectory(path, name) {
         return 0;
     });
     await buildSystemPage(path, name, games);
+}
+
+function buildSanitizedGameName(game) {
+    let sanitizedName = game.name;
+    try {
+        sanitizedName = sanitizeFileName(`${game.name}`, { replacement: '-' });
+    } catch (error) {
+        console.error(`Unable to sanitize game name: "${game.name}"`);
+        throw error;
+    }
+
+    sanitizedName = sanitizedName.replace('#', '-');
+
+    return sanitizedName;
 }
 
 async function copyAssets(absoluteTargetPath) {
