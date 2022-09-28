@@ -187,8 +187,9 @@ async function tryToGenerateThumbnail(systemPath, game) {
         await image.resize(Jimp.AUTO, 100);
         await image.writeAsync(generatedImagePath);    
     } catch (error) {
+        console.errpr(`Unable to generate thumbnail: ${originalImagePath}`);
         console.error(error);
-        throw new Error(`Unable to generate thumbnail: ${originalImagePath}`);
+        return 'https://via.placeholder.com/100';
     }
     
 
