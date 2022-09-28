@@ -46,3 +46,12 @@ h1 {
 .game-image--half {
     width: 50%;
 }
+
+.game-video {
+}
+.game-video--full {
+    width: 100%;
+}
+.game-video--half {
+    width: 50%;
+}
