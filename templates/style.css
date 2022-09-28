@@ -38,6 +38,10 @@ h1 {
     max-height: 100px;
 }
 
+.game-title {
+    padding: 1em 0.2em;
+}
+
 .game-media {
     width: 50%;
 }
