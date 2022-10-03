@@ -12,17 +12,17 @@
         <table>
             <tr>
                 <td class="game-media">
-                    <img class="game-image" src="{{ image }}"/>
+                    <img class="game-image" src="{{ imageUrlEncoded }}"/>
                 </td>
                 <td class="game-media">
                     <video class="game-video" autoplay loop>
-                        <source src="{{ video }}" type="video/mp4">
+                        <source src="{{ videoUrlEncoded }}" type="video/mp4">
                     </video>
                 </td>
             </tr>
         <table>
         {% else %}
-            <p><img class="game-image game-image--full" src="{{ image }}"/></p>
+            <p><img class="game-image game-image--full" src="{{ imageUrlEncoded }}"/></p>
         {% endif %}
 
         <table class="list">
