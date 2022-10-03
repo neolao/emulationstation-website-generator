@@ -77,6 +77,14 @@ async function processSystemDirectory(path, system) {
         }
         game.path = cleanGamePath(game.path);
         game.sanitizedFileName = buildSanitizedGameFileName(game);
+        if (game.image) {
+            game.image = cleanGamePath(game.image);
+            game.imageUrlEncoded = urlEncode(game.image);
+        }
+        if (game.video) {
+            game.video = cleanGamePath(game.video);
+            game.videoUrlEncoded = urlEncode(game.video);
+        }
         game.generatedThumbnail = await tryToGenerateThumbnail(path, game);
         await buildGamePage(path, game);
     }
@@ -116,6 +124,10 @@ function filterLastUniqueFilePath(games) {
     }
 
     return Array.from(uniqueGames.values());
+}
+
+function urlEncode(path) {
+    return encodeURIComponent(path);
 }
 
 function buildSanitizedGameFileName(game) {
