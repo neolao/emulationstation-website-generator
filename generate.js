@@ -128,6 +128,11 @@ function buildSanitizedGameFileName(game) {
     }
 
     sanitizedName = sanitizedName.replaceAll('#', '-');
+    sanitizedName = sanitizedName.replaceAll('%', '-');
+    sanitizedName = sanitizedName.replaceAll('!', '-');
+    sanitizedName = sanitizedName.replaceAll('[', '-');
+    sanitizedName = sanitizedName.replaceAll(']', '-');
+    sanitizedName = sanitizedName.replaceAll('+', '-');
 
     return sanitizedName;
 }
@@ -206,13 +211,13 @@ async function tryToGenerateThumbnail(systemPath, game) {
     try {
         const image = await Jimp.read(originalImagePath);
         await image.resize(Jimp.AUTO, 100);
-        await image.writeAsync(generatedImagePath);    
+        await image.writeAsync(generatedImagePath);
     } catch (error) {
         console.error(`Unable to generate thumbnail: ${originalImagePath}`);
         console.error(error);
         return 'https://via.placeholder.com/100';
     }
-    
+
 
     return relativeGeneratedImagePath;
 }
