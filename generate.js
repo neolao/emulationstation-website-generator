@@ -71,6 +71,13 @@ async function processSystemDirectory(path, system) {
     let games = Array.isArray(gamelist.gameList.game) ? gamelist.gameList.game : [gamelist.gameList.game];
     games = filterLastUniqueFilePath(games);
 
+    games = games.filter((game) => {
+        if (game.hidden && game.hidden === 'true') {
+            return false;
+        }
+        return true;
+    });
+
     for (const game of games) {
         if (!game.name) {
             game.name = basename(resolvePath(path, game.path));
@@ -89,12 +96,6 @@ async function processSystemDirectory(path, system) {
         await buildGamePage(path, game);
     }
 
-    games = games.filter((game) => {
-        if (game.hidden && game.hidden === 'true') {
-            return false;
-        }
-        return true;
-    });
     games.sort((a, b) => {
         if (a.name < b.name) {
             return -1;
