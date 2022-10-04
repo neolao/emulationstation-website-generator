@@ -201,6 +201,7 @@ async function tryToGenerateThumbnail(systemPath, game) {
     } else if (game.image) {
         originalImage = game.image;
     } else {
+        console.error("Unable to generate thumbnail", game);
         return 'https://via.placeholder.com/100';
     }
 
