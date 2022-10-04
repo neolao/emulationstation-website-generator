@@ -72,7 +72,7 @@ async function processSystemDirectory(path, system) {
     games = filterLastUniqueFilePath(games);
 
     games = games.filter((game) => {
-        if (game.hidden && game.hidden === 'true') {
+        if (game.hidden && game.hidden === true) {
             return false;
         }
         return true;
